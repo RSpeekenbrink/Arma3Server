@@ -48,6 +48,13 @@ EXPOSE 2304/udp
 EXPOSE 2305/udp
 EXPOSE 2306/udp
 
+RUN dpkg --add-architecture i386 
+RUN apt-get update
+RUN apt-get install -y libtbb2:i386
+RUN apt-get install -y libtbb2
+
+RUN apt-get install -y locales && sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen && locale-gen
+
 WORKDIR /arma3
 
 VOLUME /steamcmd
